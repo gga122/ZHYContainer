@@ -8,6 +8,9 @@
 
 #import "ZHYContainer.h"
 
+#define GLOBAL_LOCK                     [self.globalLock lock];
+#define GLOBAL_UNLOCK                   [self.globalLock unlock];
+
 @interface ZHYContainer ()
 
 @property (nonatomic, strong) NSRecursiveLock *globalLock;
@@ -25,6 +28,47 @@
     }
     
     return self;
+}
+
+#pragma mark - ZHYContainerProtocol
+
+- (BOOL)add:(id<ZHYObject>)object {
+    if (![self objectWillAddBeforeLock:object]) {
+        return NO;
+    }
+    
+    GLOBAL_LOCK
+    
+    BOOL res = [self objectWillAddAfterLock:object];
+    if (res) {
+        res = [self objectDidAddAfterLock:object];
+    }
+    
+    GLOBAL_UNLOCK
+    
+    if (res) {
+        return [self objectDidAddAfterUnlock:object];
+    }
+    
+    return NO;
+}
+
+#pragma mark - AOP (Add) 
+
+- (BOOL)objectWillAddBeforeLock:(id<ZHYObject>)object {
+    return YES;
+}
+
+- (BOOL)objectWillAddAfterLock:(id<ZHYObject>)object {
+    return NO;
+}
+
+- (BOOL)objectDidAddAfterLock:(id<ZHYObject>)object {
+    return NO;
+}
+
+- (BOOL)objectDidAddAfterUnlock:(id<ZHYObject>)object {
+    return NO;
 }
 
 @end
