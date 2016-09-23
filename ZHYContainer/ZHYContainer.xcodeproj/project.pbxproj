@@ -12,6 +12,7 @@
 		BA8ACF451D957C700099261E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8ACF441D957C700099261E /* Assets.xcassets */; };
 		BA8ACF481D957C700099261E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8ACF461D957C700099261E /* MainMenu.xib */; };
 		BA8ACF531D957C710099261E /* ZHYContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8ACF521D957C710099261E /* ZHYContainerTests.m */; };
+		BA8ACF601D957EB20099261E /* ZHYContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8ACF5F1D957EB20099261E /* ZHYContainer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,10 @@
 		BA8ACF4E1D957C710099261E /* ZHYContainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHYContainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8ACF521D957C710099261E /* ZHYContainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHYContainerTests.m; sourceTree = "<group>"; };
 		BA8ACF541D957C710099261E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA8ACF5E1D957EB20099261E /* ZHYContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYContainer.h; sourceTree = "<group>"; };
+		BA8ACF5F1D957EB20099261E /* ZHYContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYContainer.m; sourceTree = "<group>"; };
+		BA8ACF611D9580270099261E /* ZHYContainerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYContainerProtocol.h; sourceTree = "<group>"; };
+		BA8ACF621D9584A20099261E /* ZHYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +81,7 @@
 		BA8ACF3D1D957C700099261E /* ZHYContainer */ = {
 			isa = PBXGroup;
 			children = (
+				BA8ACF5D1D957E880099261E /* Classes */,
 				BA8ACF3E1D957C700099261E /* AppDelegate.h */,
 				BA8ACF3F1D957C700099261E /* AppDelegate.m */,
 				BA8ACF441D957C700099261E /* Assets.xcassets */,
@@ -101,6 +107,17 @@
 				BA8ACF541D957C710099261E /* Info.plist */,
 			);
 			path = ZHYContainerTests;
+			sourceTree = "<group>";
+		};
+		BA8ACF5D1D957E880099261E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BA8ACF611D9580270099261E /* ZHYContainerProtocol.h */,
+				BA8ACF5E1D957EB20099261E /* ZHYContainer.h */,
+				BA8ACF5F1D957EB20099261E /* ZHYContainer.m */,
+				BA8ACF621D9584A20099261E /* ZHYObject.h */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8ACF431D957C700099261E /* main.m in Sources */,
+				BA8ACF601D957EB20099261E /* ZHYContainer.m in Sources */,
 				BA8ACF401D957C700099261E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
