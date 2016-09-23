@@ -53,6 +53,27 @@
     return NO;
 }
 
+- (BOOL)remove:(id<ZHYObject>)object {
+    if (![self objectWillRemoveBeforeLock:object]) {
+        return NO;
+    }
+    
+    GLOBAL_LOCK
+    
+    BOOL res = [self objectWillRemoveAfterLock:object];
+    if (res) {
+        res = [self objectDidRemoveAfterLock:object];
+    }
+    
+    GLOBAL_UNLOCK
+    
+    if (res) {
+        return [self objectDidRemoveAfterUnlock:object];
+    }
+    
+    return NO;
+}
+
 #pragma mark - AOP (Add) 
 
 - (BOOL)objectWillAddBeforeLock:(id<ZHYObject>)object {
@@ -70,5 +91,24 @@
 - (BOOL)objectDidAddAfterUnlock:(id<ZHYObject>)object {
     return NO;
 }
+
+#pragma mark - AOP (Remove)
+
+- (BOOL)objectWillRemoveBeforeLock:(id<ZHYObject>)object {
+    return NO;
+}
+
+- (BOOL)objectWillRemoveAfterLock:(id<ZHYObject>)object {
+    return NO;
+}
+
+- (BOOL)objectDidRemoveAfterLock:(id<ZHYObject>)object {
+    return NO;
+}
+
+- (BOOL)objectDidRemoveAfterUnlock:(id<ZHYObject>)object {
+    return NO;
+}
+
 
 @end
