@@ -22,8 +22,11 @@
 
 - (BOOL)remove:(id<ZHYObject>)object;
 
-@optional
+- (BOOL)contains:(id<ZHYObject>)object;
 
+@property (nonatomic) NSEnumerator<id<ZHYObject>> *objectEnumerator;
+
+@optional
 
 
 @end

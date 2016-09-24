@@ -18,23 +18,24 @@
 
 - (BOOL)add:(id<ZHYObject>)object;
 
+- (BOOL)remove:(id<ZHYObject>)object;
+
 /**
- *  提供添加接口相关的AOP方法, 返回 ‘NO’ 将返回
+ *  提供添加接口相关的AOP方法, 返回 ‘NO’ 将直接返回
  */
 - (BOOL)objectWillAddBeforeLock:(id<ZHYObject>)object;
 - (BOOL)objectWillAddAfterLock:(id<ZHYObject>)object;
 - (BOOL)objectDidAddAfterLock:(id<ZHYObject>)object;
 - (BOOL)objectDidAddAfterUnlock:(id<ZHYObject>)object;
 
-- (BOOL)remove:(id<ZHYObject>)object;
-
 /**
- *  提供移除接口相关的AOP方法, 返回 ‘NO’ 将返回
+ *  提供移除接口相关的AOP方法, 返回 ‘NO’ 将直接返回
  */
 - (BOOL)objectWillRemoveBeforeLock:(id<ZHYObject>)object;
 - (BOOL)objectWillRemoveAfterLock:(id<ZHYObject>)object;
 - (BOOL)objectDidRemoveAfterLock:(id<ZHYObject>)object;
 - (BOOL)objectDidRemoveAfterUnlock:(id<ZHYObject>)object;
+
 
 
 @end
