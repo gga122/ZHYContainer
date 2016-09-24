@@ -45,6 +45,10 @@
 
 @protocol ZHYCommandDelegate <NSObject>
 
-
+@optional
+- (BOOL)command:(ZHYCommand *)cmd willProcessBeforeLockWith:(id<ZHYObject>)object;
+- (BOOL)command:(ZHYCommand *)cmd willProcessAfterLockWith:(id<ZHYObject>)object;
+- (BOOL)command:(ZHYCommand *)cmd didProcessAfterLockWith:(id<ZHYObject>)object;
+- (BOOL)command:(ZHYCommand *)cmd didProcessAfterUnlockWith:(id<ZHYObject>)object;
 
 @end
