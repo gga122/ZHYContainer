@@ -26,9 +26,25 @@
 
 @property (nonatomic, weak) id<ZHYContainerProtocol> container;
 
+/**
+ *  用于指令操作AOP的相关接口
+ *  子类可以重写这些方法来实现通用指令处理操作
+ *
+ *  1. Will Process (Unlock)
+ *  2. Will Process (Lock)
+ *  3. Did  Process (Lock)
+ *  4. Did  Process (Unlock)
+ */
+- (BOOL)objectWillProcessBeforeLock:(id<ZHYObject>)object;
+- (BOOL)objectWillProcessAfterLock:(id<ZHYObject>)object;
+- (BOOL)objectDidProcessAfterLock:(id<ZHYObject>)object;
+- (BOOL)objectDidProcessAfterUnlock:(id<ZHYObject>)object;
+
 @end
 
 
 @protocol ZHYCommandDelegate <NSObject>
+
+
 
 @end

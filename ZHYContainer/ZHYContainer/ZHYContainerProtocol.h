@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZHYCommand.h"
 #import "ZHYObject.h"
 
 /**
@@ -17,6 +18,8 @@
 @protocol ZHYContainerProtocol <NSObject>
 
 @required
+
+- (BOOL)registerCommand:(ZHYCommand *)cmd forSelector:(SEL)selector;
 
 - (BOOL)add:(id<ZHYObject>)object;
 

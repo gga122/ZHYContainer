@@ -28,4 +28,12 @@
     return [self initWithCommandID:0 delegate:nil];
 }
 
+#pragma mark - Invocation
+
+- (BOOL)InvocationWithObject:(id<ZHYObject>)object {
+    return YES;
+}
+
+
+
 @end
