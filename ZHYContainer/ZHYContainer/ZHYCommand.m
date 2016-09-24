@@ -28,10 +28,42 @@
     return [self initWithCommandID:0 delegate:nil];
 }
 
+- (NSString *)description {
+    NSMutableString *desc = [NSMutableString stringWithString:[super description]];
+    
+    [desc appendFormat:@"<CommandID: %zd>", _commandID];
+    
+    return desc;
+}
+
 #pragma mark - Invocation
 
 - (BOOL)InvocationWithObject:(id<ZHYObject>)object {
-    return YES;
+    id<NSLocking> lock = self.lock;
+    
+    if (!lock) {
+        [NSException raise:NSObjectNotAvailableException format:@"lock object is nil. <Command: %@>", self];
+        return NO;
+    }
+    
+    if (![self objectWillProcessBeforeLock:object]) {
+        return NO;
+    }
+    
+    [lock lock];
+    
+    BOOL res = [self objectWillProcessAfterLock:object];
+    if (res) {
+        res = [self objectDidProcessAfterLock:object];
+    }
+    
+    [lock unlock];
+    
+    if (res) {
+        return [self objectDidProcessAfterUnlock:object];
+    }
+    
+    return NO;
 }
 
 #pragma mark - AOP (Process)
