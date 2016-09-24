@@ -28,5 +28,10 @@
 
 @optional
 
+- (BOOL)update:(id<ZHYObject>)object;
+
+- (BOOL)cover:(id<ZHYContainerProtocol>)container;
+
++ (instancetype)containerWithContainer:(id<ZHYContainerProtocol>)container;
 
 @end
