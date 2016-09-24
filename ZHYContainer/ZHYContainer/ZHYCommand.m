@@ -36,5 +36,36 @@
 
 #pragma mark - AOP (Process)
 
+- (BOOL)objectWillProcessBeforeLock:(id<ZHYObject>)object {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(command:willProcessBeforeLockWith:)]) {
+        return [self.delegate command:self willProcessBeforeLockWith:object];
+    }
+    
+    return NO;
+}
+
+- (BOOL)objectWillProcessAfterLock:(id<ZHYObject>)object {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(command:willProcessAfterLockWith:)]) {
+        return [self.delegate command:self willProcessAfterLockWith:object];
+    }
+    
+    return NO;
+}
+
+- (BOOL)objectDidProcessAfterLock:(id<ZHYObject>)object {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(command:didProcessAfterLockWith:)]) {
+        return [self.delegate command:self didProcessAfterLockWith:object];
+    }
+    
+    return NO;
+}
+
+- (BOOL)objectDidProcessAfterUnlock:(id<ZHYObject>)object {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(command:didProcessAfterUnlockWith:)]) {
+        return [self.delegate command:self didProcessAfterUnlockWith:object];
+    }
+    
+    return NO;
+}
 
 @end
