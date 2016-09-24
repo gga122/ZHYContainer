@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA699F861D96EBB500BEA285 /* ZHYCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = BA699F851D96EBB500BEA285 /* ZHYCommand.m */; };
 		BA8ACF401D957C700099261E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8ACF3F1D957C700099261E /* AppDelegate.m */; };
 		BA8ACF431D957C700099261E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8ACF421D957C700099261E /* main.m */; };
 		BA8ACF451D957C700099261E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8ACF441D957C700099261E /* Assets.xcassets */; };
@@ -26,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA699F841D96EBB500BEA285 /* ZHYCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYCommand.h; sourceTree = "<group>"; };
+		BA699F851D96EBB500BEA285 /* ZHYCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYCommand.m; sourceTree = "<group>"; };
 		BA8ACF3B1D957C700099261E /* ZHYContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHYContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8ACF3E1D957C700099261E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA8ACF3F1D957C700099261E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 				BA8ACF5E1D957EB20099261E /* ZHYContainer.h */,
 				BA8ACF5F1D957EB20099261E /* ZHYContainer.m */,
 				BA8ACF621D9584A20099261E /* ZHYObject.h */,
+				BA699F841D96EBB500BEA285 /* ZHYCommand.h */,
+				BA699F851D96EBB500BEA285 /* ZHYCommand.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8ACF431D957C700099261E /* main.m in Sources */,
+				BA699F861D96EBB500BEA285 /* ZHYCommand.m in Sources */,
 				BA8ACF601D957EB20099261E /* ZHYContainer.m in Sources */,
 				BA8ACF401D957C700099261E /* AppDelegate.m in Sources */,
 			);
@@ -413,6 +419,7 @@
 				BA8ACF591D957C710099261E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA8ACF5A1D957C710099261E /* Build configuration list for PBXNativeTarget "ZHYContainerTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +428,7 @@
 				BA8ACF5C1D957C710099261E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
