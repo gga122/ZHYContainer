@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZHYCommand.h"
 #import "ZHYObject.h"
+
+@class ZHYCommand;
 
 /**
  *  提供了关于ZHYContainer相关接口的定义
@@ -19,7 +20,11 @@
 
 @required
 
-- (BOOL)registerCommand:(ZHYCommand *)cmd forSelector:(SEL)selector;
+- (BOOL)addCommand:(ZHYCommand *)cmd forSelector:(SEL)selector;
+
+- (BOOL)removeCommandForSelector:(SEL)selector;
+
+- (ZHYCommand *)commandForSelector:(SEL)selector;
 
 - (BOOL)add:(id<ZHYObject>)object;
 
@@ -30,6 +35,8 @@
 @property (nonatomic) NSEnumerator<id<ZHYObject>> *objectEnumerator;
 
 @optional
+
+- (BOOL)replaceCommand:(ZHYCommand *)cmd forSelector:(SEL)selector;
 
 - (BOOL)update:(id<ZHYObject>)object;
 

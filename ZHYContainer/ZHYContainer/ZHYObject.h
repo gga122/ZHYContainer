@@ -15,6 +15,4 @@
 
 @protocol ZHYObject <NSObject>
 
-
-
 @end
