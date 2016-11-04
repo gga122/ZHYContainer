@@ -14,6 +14,8 @@
 @interface ZHYContainer ()
 
 @property (nonatomic, strong) NSRecursiveLock *globalLock;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYCommand *> *totalCommands;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, ZHYCommand *> *cachedCommands;
 
 @end
 
@@ -25,6 +27,9 @@
     self = [super init];
     if (self) {
         _globalLock = [[NSRecursiveLock alloc] init];
+        
+        _totalCommands = [NSMutableDictionary dictionary];
+        _cachedCommands = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -32,11 +37,42 @@
 
 #pragma mark - ZHYContainerProtocol
 
+- (BOOL)registerCommand:(ZHYCommand *)cmd forSelector:(SEL)selector {
+    BOOL isGuard = (!cmd || selector == nil);
+    if (isGuard) {
+        return NO;
+    }
+    
+    NSString *selKey = NSStringFromSelector(selector);
+    
+    ZHYCommand *rCmd = [self commandForSelectorKey:selKey];
+    if (rCmd) {
+        return NO;
+    }
+
+    GLOBAL_LOCK
+    
+    [self.totalCommands setObject:cmd forKey:selKey];
+    
+    GLOBAL_UNLOCK
+    
+    return YES;
+}
+
+- (ZHYCommand *)commandForSelector:(SEL)selector {
+    if (!selector) {
+        return nil;
+    }
+    
+    NSString *selKey = NSStringFromSelector(selector);
+    return [self commandForSelectorKey:selKey];
+}
+
 - (BOOL)add:(id<ZHYObject>)object {
     if (![self objectWillAddBeforeLock:object]) {
         return NO;
     }
-    
+
     GLOBAL_LOCK
     
     BOOL res = [self objectWillAddAfterLock:object];
@@ -72,6 +108,30 @@
     }
     
     return NO;
+}
+
+#pragma mark - Private Method 
+
+- (ZHYCommand *)commandForSelectorKey:(NSString *)selKey {
+    if (selKey.length == 0) {
+        return nil;
+    }
+    
+    ZHYCommand *cmd;
+    
+    GLOBAL_LOCK
+    cmd = [self.cachedCommands objectForKey:selKey];
+    if (!cmd) {
+        cmd = [self.totalCommands objectForKey:selKey];
+        
+        if (cmd) {
+            [self.cachedCommands setObject:cmd forKey:selKey];
+        }
+    }
+    
+    GLOBAL_UNLOCK
+    
+    return cmd;
 }
 
 #pragma mark - AOP (Add) 
